@@ -1,0 +1,32 @@
+﻿@model Bypass.Data.Models.LoginModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "_LoginLayout";
+}
+<div class="auth-fon">
+        <div class="auth-wrapper">
+            <div class="auth-inner">
+                <div class="row">
+                    <div class="col-6">
+                    </div>
+                    <div class="col-6">
+                        <form class="loging-form" method="post">
+                            <h3>Вход в систему</h3>
+                            <p class="comment">Обходные листы</p>
+                            <div class="text-danger">@ViewBag.ErrorMessage</div>
+                            
+                            <div class="form-group pb-3">
+                                <label>Пользователь</label>
+                                <input type="text" class="form-control" asp-for="User" name="User" placeholder="Пользователь" />
+                            </div>
+                            <div class="form-group pb-3">
+                                <label>Пароль</label>
+                                <input type="password" class="form-control" name="Password" placeholder="Пароль" />
+                            </div>
+                            <button class="btn btn-primary btn-enter" type="submit">Вход</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
