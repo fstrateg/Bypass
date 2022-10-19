@@ -1,8 +1,103 @@
-﻿@{
+﻿@using Bypass.Data.Types
+@model IEnumerable<BypassItem>
+
+@{
     Layout = "_Layout";
 }
-<html>
-    <body>
-        <p>Test</p>
-    </body>
-</html>
+<script>
+    function getClass(vl) {
+                let rez = ['grp'];
+                switch (vl) {
+                    case 1:
+                        rez.push('grp-red');
+                        break;
+                    case 0:
+                        rez.push('grp-green');
+                        break;
+                    case -1:
+                        rez.push('grp-gray');
+                        break;
+                    case 2:
+                        rez.push('grp-yellow');
+                        break;
+
+                }
+                return rez;
+            }
+</script>
+@functions{
+    string getClass(decimal vl)
+    {
+        string rez = "";
+                switch (vl) {
+                    case 1:
+                        rez="grp-red";
+                        break;
+                    case 0:
+                        rez="grp-green";
+                        break;
+                    case -1:
+                        rez="grp-gray";
+                        break;
+                    case 2:
+                        rez="grp-yellow";
+                        break;
+
+                }
+                return rez+=" grp";
+    }
+}
+@{
+    foreach (BypassItem item in Model)
+    {
+    <div class="row justify-content-md-center">
+                    <div class="col-lg-8 col-md-10 list-cn">
+                        <div class="list-cap"><h3>@item.ObjCaption</h3></div>
+                        <div class="list-det">
+                            <div class="row">
+                                <div class="col"><b>Дата создания:</b></div>
+                                <div class="col"><b>Событие:</b></div>
+                                <div class="col"><b>ID в системе:</b></div>
+                                <div class="col-5"><b>Примечание:</b></div>
+                            </div>
+                            <div class="row">
+                                <div class="col">@item.DocDate</div>
+                                <div class="col">@item.TypeName</div>
+                                <div class="col">@item.Zverid</div>
+                                <div class="col-5">@item.Remark</div>
+                            </div>
+                            <div class="row">
+                                <div class="col">&nbsp;</div>
+                                <div class="col"><b>Дата события:</b></div>
+                                <div class="col"><b>Контракт:</b></div>
+                                <div class="col-5"><b>Подразделение:</b></div>
+                            </div>
+                            <div class="row">
+                                <div class="col">&nbsp;</div>
+                                <div class="col">@item.EventDate</div>
+                                <div class="col">@item.ZverContract</div>
+                                <div class="col-5">@item.Staff</div>
+                            </div>
+                        </div>
+                        <div class="list-grp row">
+                            <div class="col">
+                                <div class="@getClass(item.P138)">138</div>
+                                <div class="@getClass(item.P183)">183</div>
+                                <div class="@getClass(item.P314)">314</div>
+                                <div class="@getClass(item.P405)">405</div>
+                                <div class="@getClass(item.P778)">778</div>
+                                <div class="@getClass(item.P363)">363</div>
+                                <div class="@getClass(item.P124)">124</div>
+                                <div class="@getClass(item.P108)">108</div>
+                                <div class="@getClass(item.P758)">758</div>
+                                <img class="grp-img" src="Images/loop.png" title="@item.Info" />
+                                <a href="javascript:(0)" onclick="edit">
+                                    <img class="grp-img" src="Images/edit.png" title="Редактировние" :data-id="@item.ID"/>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+    </div>
+    }
+}

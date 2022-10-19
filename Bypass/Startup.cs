@@ -1,3 +1,5 @@
+using Bypass.Data.Interfaces;
+using Bypass.Data.Mocks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -17,6 +19,7 @@ namespace Bypass
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddTransient<IBypassItems, MockBypass>();
             services.AddAuthentication("MyAuthCookie").AddCookie("MyAuthCookie", options => {
                 options.Cookie.Name = "MyAuthCookie";
                 options.LoginPath = "/user/login";

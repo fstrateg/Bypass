@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Bypass.Data.Mocks;
+using Bypass.Data.Interfaces;
 
 namespace Bypass.Controllers
 {
@@ -8,10 +10,18 @@ namespace Bypass.Controllers
     [Authorize]
     public class BypassController : Controller
     {
+        IBypassItems _bypass;
+
+        public BypassController(IBypassItems bypass)
+        {
+            _bypass = bypass;
+        }
+
         [Route("/")]
         public IActionResult Index()
         {
-            return View();
+            var items=_bypass.GetAllItems();
+            return View(items);
         }
 
         [Route("/archive")]
