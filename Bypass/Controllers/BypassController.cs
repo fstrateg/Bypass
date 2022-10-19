@@ -13,5 +13,11 @@ namespace Bypass.Controllers
         {
             return View();
         }
+
+        [Route("/archive")]
+        public IActionResult Archive()
+        {
+            return View();
+        }
     }
 }
