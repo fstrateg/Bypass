@@ -4,4 +4,17 @@
 @{
     Layout = "_Layout";
 }
-This is archive page
+<div class="header">
+    <label>c:</label>
+    <input type="date" />
+    Using Date Template
+    @Html.TextBox("datFrom","01.01.2100",new {type="text"});
+</div>
+
+<script>
+
+    $("#datFrom").datepicker({
+  dateFormat: 'dd.mm.yy',
+});
+</script>
+<!--script type="text/javascript" src="/js/datepicker-ru.js"></script-->
