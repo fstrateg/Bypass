@@ -1,20 +1,55 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model Bypass.Data.Interfaces.IArchiveModel
+@using Bypass.Data.Types;
 @{
     Layout = "_Layout";
 }
 <div class="header">
-    <label>c:</label>
-    <input type="date" />
-    Using Date Template
-    @Html.TextBox("datFrom","01.01.2100",new {type="text"});
+    <div class="row">
+    @using (Html.BeginForm("Archive","Bypass",FormMethod.Post))
+    {
+    @Html.Label("DateFrom","C")
+    @Html.TextBox("DateFrom",Model.Filter.DateFrom,new {type="text"})
+    @Html.Label("DateTo","по")
+    @Html.TextBox("DateTo",Model.Filter.DateTo,new {type="text"})
+    @Html.Label("Fio","Ответсвенный (ФИО)")
+    @Html.TextBox("Fio",Model.Filter.Fio)
+    <input type="submit" value="Обновить"/>
+    }
+    </div>
 </div>
+
+@{
+    if (Model.Records.Count() > 0)
+    {
+    <table>
+            @{
+                foreach (BypassItem item in Model.Records)
+                {
+                     <tr>
+                          <td>@item.ObjCaption</td>
+                     </tr>
+                }
+            }
+    </table>
+    }
+}
 
 <script>
 
-    $("#datFrom").datepicker({
+    $("#DateFrom").datepicker({
+  dateFormat: 'dd.mm.yy',
+});
+$("#DateTo").datepicker({
   dateFormat: 'dd.mm.yy',
 });
 </script>
 <!--script type="text/javascript" src="/js/datepicker-ru.js"></script-->
+
+<style>
+    #DateFrom, #DateTo{
+        width: 100px;
+    }
+    #Fio{
+        width: 300px;
+    }
+</style>

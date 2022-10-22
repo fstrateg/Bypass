@@ -20,6 +20,7 @@ namespace Bypass
         {
             services.AddMvc();
             services.AddTransient<IBypassItems, MockBypass>();
+            services.AddTransient<IArchiveModel, MockArchive>();
             services.AddAuthentication("MyAuthCookie").AddCookie("MyAuthCookie", options => {
                 options.Cookie.Name = "MyAuthCookie";
                 options.LoginPath = "/user/login";
