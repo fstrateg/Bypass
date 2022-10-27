@@ -4,7 +4,7 @@ using System.Linq;
 using Oracle.ManagedDataAccess.Client;
 using System.Text;
 using System.Data;
-using Bypass.Data.Types;
+using Bypass.Models.Types;
 
 namespace Bypass.Models
 {
@@ -16,14 +16,14 @@ namespace Bypass.Models
         StringBuilder _sql=new StringBuilder();
         public OraDriver Dbo { get { return this; } }
 
-       /* public OraDriver(Connect con)
+        public OraDriver(Connect con)
         {
             OracleConnectionStringBuilder cb = new OracleConnectionStringBuilder();
             cb.UserID = con.UserName;
             cb.Password = con.Password;
             cb.DataSource = con.DataSource;
             _con.ConnectionString = cb.ToString();
-        }*/
+        }
 
         public OraDriver Connect()
         {
