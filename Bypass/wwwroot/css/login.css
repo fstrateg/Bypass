@@ -1,4 +1,8 @@
-﻿.login-form-submit {
+﻿body {
+    background-color: #f2f2ff;
+}
+
+.login-form-submit {
     text-align: center;
 }
 
