@@ -4,6 +4,8 @@ using Bypass.Data.Mocks;
 using Bypass.Data.Interfaces;
 using Bypass.Data.Types;
 using System;
+using Microsoft.Extensions.Configuration;
+using Bypass.Models.Types;
 
 namespace Bypass.Controllers
 {
@@ -14,10 +16,18 @@ namespace Bypass.Controllers
         IBypassItems _bypass;
         IArchiveModel _archiveModel;
 
-        public BypassController(IBypassItems bypass, IArchiveModel archiveMdel)
+        public BypassController(IConfiguration config, IBypassItems bypass, IArchiveModel archiveMdel)
         {
+            Connect con = new Connect()
+            {
+                UserName = config.GetConnectionString("UserName"),
+                Password = config.GetConnectionString("Password"),
+                DataSource = config.GetConnectionString("DataSource")
+            };
             _bypass = bypass;
+            _bypass.SetConfiguration(con);
             _archiveModel = archiveMdel;
+            _archiveModel.SetConfiguration(con);
         }
 
         [Route("/")]
@@ -47,6 +57,15 @@ namespace Bypass.Controllers
             _archiveModel.Filter = filter;
             _archiveModel.Fetch();
             return View(_archiveModel);
+        }
+
+        [HttpPost]
+        [Route("/archivedata")]
+        public IActionResult ArchiveData([FromForm] ArchiveForm filter)
+        {
+            _archiveModel.Filter = filter;
+            _archiveModel.Fetch();
+            return Ok(_archiveModel.Data);
         }
     }
 }

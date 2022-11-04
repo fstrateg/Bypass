@@ -12,9 +12,10 @@
      <script src="/js/jquery-3.6.1.min.js"></script>
      <script src="/js/jquery-ui.min.js"></script>
      <script src="/js/datepicker-ru.js"></script>
+     <script src="/js/jquery.dataTables.min.js"></script>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
             <span class="navbar-brand mb-0 h1">Обходные</span>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,6 +36,11 @@
                         <a asp-controller="User" asp-action="Logout" class="nav-link">
                             <i class="fa fa-sign-out"></i>
                             Выход</a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-controller="Bypass" asp-action="ArchiveData" class="nav-link">
+                            <i class="fa fa-sign-out"></i>
+                            Данные</a>
                     </li>
                 </ul>
             </div>

@@ -7,7 +7,7 @@ using Bypass.Models.Types;
 using System.Security.Cryptography;
 using Bypass.Data.Types;
 
-namespace Bypass.Models
+namespace Bypass.Data.Models
 {
     public class ModelDb:OraDriver
     {
@@ -91,16 +91,16 @@ namespace Bypass.Models
         nvl(a.staff,' ') staff,
         nvl(a.remark,' ') remark,
        a.objcaption, a.clsstatus, a.clsdate
-  FROM bypass_archive a 
-where docdate between date '{rr.DateFrom.Substring(0,10)}' and date '{rr.DateTo.Substring(0, 10)}' {likeid}
+  FROM www.bypass_archive a 
+where docdate between date '{rr.DateFromSql}' and date '{rr.DateToSql}' {likeid}
 order by a.docdate").GetReader();
             while(rd.Read())
             {
                 rez.Add(new Archive()
                 {
-                    ID = rd.GetDecimal(0),
-                    DocDate = rd.GetDateTime(1).ToString("yyyy-MM-dd"),
-                    EventDate = rd.GetDateTime(2).ToString("yyyy-MM-dd"),
+                    ID = rd.GetString(0),
+                    DocDate = rd.GetDateTime(1).ToString("d"),
+                    EventDate = rd.GetDateTime(2).ToString("d"),
                     Event = rd.GetString(3),
                     Staff = rd.GetString(4),
                     Remark = rd.GetString(5),

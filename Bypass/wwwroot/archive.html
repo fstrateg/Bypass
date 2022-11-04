@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+     <link href="./bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
+     <link href="./bootstrap/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+     <link href="./css/bypass.css" rel="stylesheet" type="text/css" />
+     <link href="./css/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+     <script src="./js/jquery-3.6.1.min.js"></script>
+     <script src="./js/jquery-ui.min.js"></script>
+     <script src="./js/datepicker-ru.js"></script>
+     <script src="./js/jquery.dataTables.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1">Обходные</span>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">
+                            <i class="fa fa-users"></i>
+                            Обходные</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/archive">
+                            <i class="fa fa-history"></i> Архив</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/user/logout">
+                            <i class="fa fa-sign-out"></i>
+                            Выход</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/archivedata">
+                            <i class="fa fa-sign-out"></i>
+                            Данные</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div>
+        <div class="container archive">
+<div class="header">
+    <div class="row">
+        <div>
+    <label for="DateFrom">C </label>
+    <input id="DateFrom" name="DateFrom" type="text" value="01.10.2022" />
+    <label for="DateTo">&#x43F;&#x43E; </label>
+    <input id="DateTo" name="DateTo" type="text" value="01.11.2022" />
+    <label for="Fio">&#x421;&#x43E;&#x442;&#x440;&#x443;&#x434;&#x43D;&#x438;&#x43A; </label>
+    <input id="Fio" name="Fio" type="text" value="" />
+    
+    <button onclick="RazorFunction()" value="Обновить" class="abutton">Обновить</button>
+        </div>
+    </div>
+</div>
+<table class="table">
+            <thead>
+            <tr>
+            <th>Дата создания</th>
+            <th>Дата события</th>
+            <th>Событие</th>
+            <th>Сотрудник</th>
+            <th>Подразделение/должность</th>
+            <th>Примечание</th>
+            </tr>
+            </thead>
+            <tbody></tbody>
+   </table>
+   <div id="console"></div>
+</div>
+
+<script type="text/javascript" src="./archivedata.json"></script>
+<script>
+
+    $("#DateFrom").datepicker({
+  dateFormat: 'dd.mm.yy',
+});
+$("#DateTo").datepicker({
+  dateFormat: 'dd.mm.yy',
+});
+
+    function addText(el, row) {
+        var tr = document.createElement("tr");
+        var f = (val) => {
+            var t = document.createElement("td");
+            t.innerText = val
+            tr.appendChild(t)
+        }
+        
+        f(row.docDate)
+        f(row.eventDate)
+        f(row.event)
+        f(row.fio)
+        f(row.staff)
+        f(row.remark)
+
+        el.append(tr.outerHTML)
+}
+
+    function RazorFunction() {
+        var vls = {
+            DateFrom: $("#DateFrom").val(),
+            DateTo: $("#DateTo").val(),
+            Fio: $('#Fio').val()
+        };
+        var el = $('.table tbody');
+        el.empty()
+        /*  $.ajax({url: "archivedata"}).done(function(data) { */
+        data.forEach((cls) => {
+            addText(el, cls)
+        });
+    }
+</script>
+
+<style>
+    #DateFrom, #DateTo{
+        width: 100px;
+    }
+    #Fio{
+        width: 300px;
+    }
+</style>
+    </div>
+
+<!-- Visual Studio Browser Link -->
+<script type="text/javascript" src="/_vs/browserLink" async="async" id="__browserLink_initializationData" data-requestId="8e81244debcb4ed698fd85686275ef34"data-requestMappingFromServer="false" data-connectUrl="http://localhost:33547/b238e54d2964429faf79541fb6e1df6a/browserLink"></script>
+<!-- End Browser Link -->
+
+<script src="/_framework/aspnetcore-browser-refresh.js"></script></body>
+</html>

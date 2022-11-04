@@ -1,18 +1,19 @@
 ﻿using Bypass.Data.Types;
+using Bypass.Models.Types;
 using System;
 using System.Collections.Generic;
 
 namespace Bypass.Data.Mocks
 {
     public class MockBypass : Interfaces.IBypassItems
-    {
+    { 
         public IEnumerable<BypassItem> GetAllItems()
         {
             List<BypassItem> rez = new List<BypassItem>();
             BypassItem p = new BypassItem()
             {
                 ID = "10000000000001024633",
-                DocDate = "09.12.2021 09:07:39",
+                DocDate = "09.12.2021",
                 EventDate = new DateTime(2021, 12, 16).ToShortDateString(),
                 TypeName = "увольнение",
                 Staff = "Москва | Региональное представительство | Маркетолог",
@@ -46,7 +47,7 @@ namespace Bypass.Data.Mocks
             p = new BypassItem()
             {
                 ID = "10000000000001019682",
-                DocDate = "07.12.2022 17:35:01",
+                DocDate = "07.12.2022",
                 EventDate = "01.12.2020",
                 TypeName = "увольнение",
                 Staff = "Москва | Региональное представительство | Менеджер по продажам",
@@ -78,6 +79,11 @@ namespace Bypass.Data.Mocks
 Отдел 758->Дата: 08.12.2020; Оператор: Бектемиров Марс Акылбекович | 06.09.1973; Долги: Нет долгов";
             rez.Add(p);
             return rez;
+        }
+
+        public void SetConfiguration(Connect conect)
+        {
+            
         }
     }
 }

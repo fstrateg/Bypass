@@ -1,11 +1,13 @@
 ﻿using Bypass.Data.Types;
+using Bypass.Models.Types;
 using System.Collections.Generic;
 
 namespace Bypass.Data.Interfaces
 {
     public interface IArchiveModel
     {
-        IEnumerable<BypassItem> Records { get; set; }
+        void SetConfiguration(Connect conect);
+        IEnumerable<Archive> Data { get; set; }
 
         void Fetch();
 

@@ -1,40 +1,42 @@
 ﻿@model Bypass.Data.Interfaces.IArchiveModel
 @using Bypass.Data.Types;
+@using System.Net.Http;
+@using System.Net.Http.Json;
 @{
     Layout = "_Layout";
 }
+<div class="container archive">
 <div class="header">
     <div class="row">
-    @using (Html.BeginForm("Archive","Bypass",FormMethod.Post))
-    {
-    @Html.Label("DateFrom","C")
+        <div>
+    @Html.Label("DateFrom","C ")
     @Html.TextBox("DateFrom",Model.Filter.DateFrom,new {type="text"})
-    @Html.Label("DateTo","по")
+    @Html.Label("DateTo","по ")
     @Html.TextBox("DateTo",Model.Filter.DateTo,new {type="text"})
-    @Html.Label("Fio","Ответсвенный (ФИО)")
+    @Html.Label("Fio","Сотрудник ")
     @Html.TextBox("Fio",Model.Filter.Fio)
-    <input type="submit" value="Обновить"/>
-    }
+    
+    <button onclick="RazorFunction()" value="Обновить" class="abutton">Обновить</button>
+        </div>
     </div>
 </div>
+<table class="table">
+            <thead>
+            <tr>
+            <th style="width:10%">Дата создания</th>
+            <th style="width:10%">Дата события</th>
+            <th style="width:10%">Событие</th>
+            <th style="width:20%">Сотрудник</th>
+            <th style="width:25%">Подразделение/должность</th>
+            <th style="width:25%">Примечание</th>
+            </tr>
+            </thead>
+            <tbody></tbody>
+   </table>
+   <div id="console"></div>
+</div>
 
-@{
-    if (Model.Records.Count() > 0)
-    {
-    <table>
-            @{
-                foreach (BypassItem item in Model.Records)
-                {
-                     <tr>
-                          <td>@item.ObjCaption</td>
-                     </tr>
-                }
-            }
-    </table>
-    }
-}
-
-<script>
+<script type="text/javascript">
 
     $("#DateFrom").datepicker({
   dateFormat: 'dd.mm.yy',
@@ -42,10 +44,60 @@
 $("#DateTo").datepicker({
   dateFormat: 'dd.mm.yy',
 });
+
+function test() {
+    alert('test')
+}
+
+
+function addText(el, row) {
+    var tr = document.createElement("tr");
+    var f = (val) => {
+        var t = document.createElement("td");
+        t.innerText = val
+        tr.appendChild(t)
+    }
+
+    f(row.docDate)
+    f(row.eventDate)
+    f(row.event)
+    f(row.fio)
+    f(row.staff)
+    f(row.remark)
+
+    el.append(tr.outerHTML)
+}
+
+function RazorFunction() {
+    var vls = {
+        DateFrom: $("#DateFrom").val(),
+        DateTo: $("#DateTo").val(),
+        Fio: $('#Fio').val()
+    };
+    var request = {
+        url: "archivedata",
+        method:"post",
+        data: vls
+    }
+    var el = $('.table tbody');
+    el.empty()
+
+    $.ajax(request)
+    .done(function(data) {
+        let i = 0;
+        data.every((cls) => {
+            addText(el, cls)
+            if (i++ > 100) return false
+            return true
+        });
+    });
+}
 </script>
-<!--script type="text/javascript" src="/js/datepicker-ru.js"></script-->
 
 <style>
+    .archive thead{
+        border-bottom: 2px solid #4857ff;
+    }
     #DateFrom, #DateTo{
         width: 100px;
     }

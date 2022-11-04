@@ -6,7 +6,7 @@ using System.Text;
 using System.Data;
 using Bypass.Models.Types;
 
-namespace Bypass.Models
+namespace Bypass.Data.Models
 {
     public class OraDriver
     {
