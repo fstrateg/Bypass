@@ -16,8 +16,10 @@ nav {
     padding: 15px 10px;
 }
 
-.archive input{
+.archive input {
     margin: 0 5px;
+    border: 1px solid #4857ff;
+    border-radius: 2px;
 }
 
 .archive .header {
@@ -28,6 +30,15 @@ nav {
     border: 1px solid #4857ff;
     border-radius: 3px;
     background: #d8e7ff;
+}
+.abutton:active, .abutton:hover {
+        background: #f9fbfd;
+    }
+.tfooter{
+    text-align: center;
+}
+.tfooter .abutton{
+    margin: 0 5px;
 }
 .list-tb {
 }

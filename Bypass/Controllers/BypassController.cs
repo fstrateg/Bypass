@@ -44,7 +44,7 @@ namespace Bypass.Controllers
             _archiveModel.Filter = new ArchiveForm()
             {
                 DateTo = DateTime.Now.Date.ToString("dd.MM.yyyy"),
-                DateFrom = DateTime.Now.Date.AddMonths(-1).ToString("dd.MM.yyyy"),
+                DateFrom = DateTime.Now.Date.AddYears(-3).ToString("dd.MM.yyyy"),
                 Fio = ""
             };
             return View(_archiveModel);

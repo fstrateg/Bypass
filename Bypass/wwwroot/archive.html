@@ -4,14 +4,14 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title></title>
-     <link href="./bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
-     <link href="./bootstrap/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-     <link href="./css/bypass.css" rel="stylesheet" type="text/css" />
-     <link href="./css/jquery-ui.min.css" rel="stylesheet" type="text/css" />
-     <script src="./js/jquery-3.6.1.min.js"></script>
-     <script src="./js/jquery-ui.min.js"></script>
-     <script src="./js/datepicker-ru.js"></script>
-     <script src="./js/jquery.dataTables.min.js"></script>
+    <link href="./bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="./bootstrap/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="./css/bypass.css" rel="stylesheet" type="text/css" />
+    <link href="./css/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+    <script src="./js/jquery-3.6.1.min.js"></script>
+    <script src="./js/jquery-ui.min.js"></script>
+    <script src="./js/datepicker-ru.js"></script>
+    <script src="./js/datatable.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg">
@@ -87,36 +87,10 @@ $("#DateTo").datepicker({
   dateFormat: 'dd.mm.yy',
 });
 
-    function addText(el, row) {
-        var tr = document.createElement("tr");
-        var f = (val) => {
-            var t = document.createElement("td");
-            t.innerText = val
-            tr.appendChild(t)
-        }
-        
-        f(row.docDate)
-        f(row.eventDate)
-        f(row.event)
-        f(row.fio)
-        f(row.staff)
-        f(row.remark)
-
-        el.append(tr.outerHTML)
-}
+    document.atable = new ATable('.table', data)
 
     function RazorFunction() {
-        var vls = {
-            DateFrom: $("#DateFrom").val(),
-            DateTo: $("#DateTo").val(),
-            Fio: $('#Fio').val()
-        };
-        var el = $('.table tbody');
-        el.empty()
-        /*  $.ajax({url: "archivedata"}).done(function(data) { */
-        data.forEach((cls) => {
-            addText(el, cls)
-        });
+        document.atable.drawData()
     }
 </script>
 
