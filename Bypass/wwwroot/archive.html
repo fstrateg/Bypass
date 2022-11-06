@@ -45,52 +45,98 @@
             </div>
         </div>
     </nav>
-    <div>
-        <div class="container archive">
-<div class="header">
-    <div class="row">
-        <div>
-    <label for="DateFrom">C </label>
-    <input id="DateFrom" name="DateFrom" type="text" value="01.10.2022" />
-    <label for="DateTo">&#x43F;&#x43E; </label>
-    <input id="DateTo" name="DateTo" type="text" value="01.11.2022" />
-    <label for="Fio">&#x421;&#x43E;&#x442;&#x440;&#x443;&#x434;&#x43D;&#x438;&#x43A; </label>
-    <input id="Fio" name="Fio" type="text" value="" />
-    
-    <button onclick="RazorFunction()" value="Обновить" class="abutton">Обновить</button>
-        </div>
-    </div>
-</div>
-<table class="table">
-            <thead>
-            <tr>
-            <th>Дата создания</th>
-            <th>Дата события</th>
-            <th>Событие</th>
-            <th>Сотрудник</th>
-            <th>Подразделение/должность</th>
-            <th>Примечание</th>
-            </tr>
-            </thead>
-            <tbody></tbody>
-   </table>
-   <div id="console"></div>
+<div id="app">
+
 </div>
 
 <script type="text/javascript" src="./archivedata.json"></script>
+<template>
+    <div class="row justify-content-md-center">
+        <div class="col-lg-8 col-md-10 list-cn">
+            <div class="list-cap"><h3>{{objCaption}}</h3></div>
+            <div class="list-det">
+                <div class="row">
+                    <div class="col"><b>Дата создания:</b></div>
+                    <div class="col"><b>Событие:</b></div>
+                    <div class="col"><b>ID в системе:</b></div>
+                    <div class="col-5"><b>Примечание:</b></div>
+                </div>
+                <div class="row">
+                    <div class="col">{{docDate}}</div>
+                    <div class="col">{{typeName}}</div>
+                    <div class="col">{{zverid}}</div>
+                    <div class="col-5">{{remark}}</div>
+                </div>
+                <div class="row">
+                    <div class="col">&nbsp;</div>
+                    <div class="col"><b>Дата события:</b></div>
+                    <div class="col"><b>Контракт:</b></div>
+                    <div class="col-5"><b>Подразделение:</b></div>
+                </div>
+                <div class="row">
+                    <div class="col">&nbsp;</div>
+                    <div class="col">{{eventDate}}</div>
+                    <div class="col">{{zverContract}}</div>
+                    <div class="col-5">{{staff}}</div>
+                </div>
+            </div>
+            <div class="list-grp row">
+                <div class="col">
+                    <div class="getClass({{p138}})">138</div>
+                    <div class="getClass({{p183}})">183</div>
+                    <div class="getClass({{p314}})">314</div>
+                    <div class="getClass({{p405}})">405</div>
+                    <div class="getClass({{p778}})">778</div>
+                    <div class="getClass({{p363}})">363</div>
+                    <div class="getClass({{p124}})">124</div>
+                    <div class="getClass({{p108}})">108</div>
+                    <div class="getClass({{p758}})">758</div>
+                    <img class="grp-img" src="Images/loop.png" title="@item.Info" />
+                    <a href="javascript:(0)" onclick="edit">
+                        <img class="grp-img" src="Images/edit.png" title="Редактировние" data-id="{{iD}}" />
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</template>
 <script>
+    RenderData()
 
-    $("#DateFrom").datepicker({
-  dateFormat: 'dd.mm.yy',
-});
-$("#DateTo").datepicker({
-  dateFormat: 'dd.mm.yy',
-});
+    function getClass(vl) {
+        let rez = ['grp'];
+        switch (vl) {
+            case 1:
+                rez.push('grp-red');
+                break;
+            case 0:
+                rez.push('grp-green');
+                break;
+            case -1:
+                rez.push('grp-gray');
+                break;
+            case 2:
+                rez.push('grp-yellow');
+                break;
+        }
+        return rez.join(' ');
+    }
 
-    document.atable = new ATable('.table', data)
-
-    function RazorFunction() {
-        document.atable.drawData()
+    function RenderData() {
+        data.forEach(t => {
+            var temp = document.getElementsByTagName("template")[0];
+            var clon = temp.cloneNode(true);
+            var el = document.getElementById("app")
+            for (key in t) {
+                clon.innerHTML = clon.innerHTML.replaceAll("{{" + key + "}}", t[key])
+            }
+            clon.innerHTML = clon.innerHTML.replaceAll('getClass(0)', getClass(0))
+            clon.innerHTML = clon.innerHTML.replaceAll('getClass(-1)', getClass(-1))
+            clon.innerHTML = clon.innerHTML.replaceAll('getClass(1)', getClass(1))
+            clon.innerHTML = clon.innerHTML.replaceAll('getClass(2)', getClass(2))
+            el.appendChild(clon.content);
+        })
     }
 </script>
 
@@ -102,11 +148,5 @@ $("#DateTo").datepicker({
         width: 300px;
     }
 </style>
-    </div>
-
-<!-- Visual Studio Browser Link -->
-<script type="text/javascript" src="/_vs/browserLink" async="async" id="__browserLink_initializationData" data-requestId="8e81244debcb4ed698fd85686275ef34"data-requestMappingFromServer="false" data-connectUrl="http://localhost:33547/b238e54d2964429faf79541fb6e1df6a/browserLink"></script>
-<!-- End Browser Link -->
-
-<script src="/_framework/aspnetcore-browser-refresh.js"></script></body>
+</body>
 </html>

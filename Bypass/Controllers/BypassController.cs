@@ -67,5 +67,13 @@ namespace Bypass.Controllers
             _archiveModel.Fetch();
             return Ok(_archiveModel.Data);
         }
+
+        [HttpGet]
+        [Route("/getbypass")]
+        public IActionResult GetBypass()
+        {
+            var items = _bypass.GetAllItems();
+            return Ok(items);
+        }
     }
 }
