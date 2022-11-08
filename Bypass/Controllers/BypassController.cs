@@ -75,5 +75,12 @@ namespace Bypass.Controllers
             var items = _bypass.GetAllItems();
             return Ok(items);
         }
+
+        [HttpGet]
+        [Route("/bypassedit")]
+        public IActionResult BypassEdit()
+        {
+            return View();
+        }
     }
 }
