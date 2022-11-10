@@ -1,5 +1,5 @@
 ﻿using Bypass.Data.Types;
-using Bypass.Models.Types;
+using Bypass.Data.Types;
 using System.Collections.Generic;
 
 namespace Bypass.Data.Interfaces

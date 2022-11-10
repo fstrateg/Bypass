@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Xml;
-using Bypass.Models.Types;
+using Bypass.Data.Types;
 using System.Security.Cryptography;
 using Bypass.Data.Types;
 

@@ -1,11 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Bypass.Data.Mocks;
 using Bypass.Data.Interfaces;
 using Bypass.Data.Types;
 using System;
 using Microsoft.Extensions.Configuration;
-using Bypass.Models.Types;
 
 namespace Bypass.Controllers
 {
@@ -15,8 +13,13 @@ namespace Bypass.Controllers
     {
         IBypassItems _bypass;
         IArchiveModel _archiveModel;
+        IEditModel _editModel;
 
-        public BypassController(IConfiguration config, IBypassItems bypass, IArchiveModel archiveMdel)
+        public BypassController(IConfiguration config, 
+            IBypassItems bypass, 
+            IArchiveModel archiveMdel,
+            IEditModel editModel
+            )
         {
             Connect con = new Connect()
             {
@@ -28,6 +31,8 @@ namespace Bypass.Controllers
             _bypass.SetConfiguration(con);
             _archiveModel = archiveMdel;
             _archiveModel.SetConfiguration(con);
+            _editModel = editModel;
+            _editModel.SetConfiguration(con);
         }
 
         [Route("/")]
@@ -80,7 +85,8 @@ namespace Bypass.Controllers
         [Route("/bypassedit")]
         public IActionResult BypassEdit()
         {
-            return View();
+            _editModel.Init("-1");
+            return View(_editModel);
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using Bypass.Data.Types;
-using Bypass.Models.Types;
 using System;
 using System.Collections.Generic;
 

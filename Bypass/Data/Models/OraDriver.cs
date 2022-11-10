@@ -4,7 +4,7 @@ using System.Linq;
 using Oracle.ManagedDataAccess.Client;
 using System.Text;
 using System.Data;
-using Bypass.Models.Types;
+using Bypass.Data.Types;
 
 namespace Bypass.Data.Models
 {

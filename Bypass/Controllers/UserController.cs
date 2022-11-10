@@ -1,6 +1,5 @@
 ﻿using Bypass.Data.Models;
-using Bypass.Models;
-using Bypass.Models.Types;
+using Bypass.Data.Types;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;

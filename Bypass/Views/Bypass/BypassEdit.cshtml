@@ -1,9 +1,35 @@
-﻿@{
+﻿@model Bypass.Data.Interfaces.IEditModel
+@{
 	Layout = "_Layout";
 }
-<h2>Новый обходной</h2>
-<div>Добавление редактирование обходных листов</div>
-<select name="event"></select>
-<input name="event_date" type="text"/>
-<input name="remark" type="text" />
-<input name="staff" type="text" />
+<div class="container p-4">
+	<div class="content">
+			<h2>Новый обходной</h2>
+		
+		<div class="row pb-3">
+			<span class="col">Добавление/редактирование обходных листов</span>
+		</div>
+
+		<div class="row pb-3">
+			<label class="col-sm-2 col-form-label" for="event">Действие:</label>
+			<select name="event" class="col-sm-4 col-lg-2">
+				@foreach(var item in Model.SprEvent)
+				{
+					<option key=@item.Id>@item.Name</option>
+				}
+			</select>
+		</div>
+		<div class="row pb-3">
+			<label class="col-sm-2 col-form-label" for="event_date">Дата:</label>
+			<input class="col-sm-4 col-lg-2" name="event_date" type="text"/>
+		</div>
+		<div class="row pb-3">
+			<label class="col-sm-2 col-form-label" for="remark">Примечание:</label>
+			<input class="col-sm-10" name="remark" type="text" />
+		</div>
+		<div class="row pb-3">
+			<label class="col-sm-2 col-form-label" for="staff">Сотрудник:</label>
+			<input class="col-sm-10 col-lg-5" name="staff" type="text" />
+		</div>
+	</div>
+</div>

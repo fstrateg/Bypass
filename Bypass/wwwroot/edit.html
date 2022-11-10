@@ -1,0 +1,91 @@
+<!DOCTYPE html >
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width" />
+    <!--title></!--title-->
+    <title>Обходные листы</title>
+    <link href="/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="/bootstrap/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/bypass.css" rel="stylesheet" type="text/css" />
+    <link href="/css/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+    <script src="/js/jquery-3.6.1.min.js"></script>
+    <script src="/js/jquery-ui.min.js"></script>
+    <script src="/js/datepicker-ru.js"></script>
+    <script src="/js/jquery.dataTables.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1">Обходные</span>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                     <li class="nav-item">
+                        <a class="nav-link" href="/bypassedit">
+                            <i class="fa fa-users"></i>
+                            Новый обходной</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">
+                            <i class="fa fa-users"></i>
+                            Обходные</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/archive">
+                            <i class="fa fa-history"></i> Архив</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/user/logout">
+                            <i class="fa fa-sign-out"></i>
+                            Выход</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/archivedata">
+                            <i class="fa fa-sign-out"></i>
+                            Данные</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div>
+        <div class="container p-4">
+            <div class="content">
+                <h2>Новый обходной</h2>
+                <div class="row pb-3">
+                    <div class="col">Добавление редактирование обходных листов</div>
+                </div>
+                <div class="row pb-3">
+                    <label class="col-sm-2 col-form-label" for="event">Действие:</label>
+                    <select name="event" class="col-sm-4 col-lg-2">
+                        <option key=1>&#x443;&#x432;&#x43E;&#x43B;&#x44C;&#x43D;&#x435;&#x43D;&#x438;&#x435;</option>
+                        <option key=2>&#x43F;&#x43E; &#x441;&#x43E;&#x431;&#x441;&#x442;&#x432;&#x435;&#x43D;&#x43D;&#x43E;&#x43C;&#x443;</option>
+                        <option key=3>&#x432; &#x440;&#x435;&#x437;&#x435;&#x440;&#x432;</option>
+                        <option key=4>&#x432; &#x437;&#x430;&#x43F;&#x430;&#x441;</option>
+                    </select>
+                </div>
+                <div class="row pb-3">
+                    <label class="col-sm-2 col-form-label" for="event_date">Дата:</label>
+                    <input class="col-sm-4 col-lg-2" name="event_date" type="text" />
+                </div>
+                <div class="row pb-3">
+                    <label class="col-sm-2 col-form-label" for="remark">Примечание:</label>
+                    <input class="col-sm-10" name="remark" type="text" />
+                </div>
+                <div class="row pb-3">
+                    <label class="col-sm-2 col-form-label" for="staff">Сотрудник:</label>
+                    <input class="col-sm-4 col-sm-10 col-lg-5" name="staff" type="text" />
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Visual Studio Browser Link -->
+<script type="text/javascript" src="https://localhost:44399/d05cb8e952ac468d8b8e45bf5ca71025/browserLink" async="async" id="__browserLink_initializationData" data-requestId="d4827ba732304e5b86ad2b4b06de6482" data-requestMappingFromServer="False"></script>
+<!-- End Browser Link -->
+
+<script src="/_framework/aspnetcore-browser-refresh.js"></script></body>
+</html>
