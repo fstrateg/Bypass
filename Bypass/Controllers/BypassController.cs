@@ -4,6 +4,7 @@ using Bypass.Data.Interfaces;
 using Bypass.Data.Types;
 using System;
 using Microsoft.Extensions.Configuration;
+using System.Threading.Tasks;
 
 namespace Bypass.Controllers
 {
@@ -85,8 +86,39 @@ namespace Bypass.Controllers
         [Route("/bypassedit")]
         public IActionResult BypassEdit()
         {
-            _editModel.Init("-1");
-            return View(_editModel);
+            return View();
+        }
+
+        [HttpGet]
+        [Route("/api/spremploee")]
+        public async Task<IActionResult> SprEmployee()
+        {
+            var rez = _editModel.SprEmployee();
+            return Ok(rez);
+        }
+
+        [HttpGet]
+        [Route("/api/sprevents")]
+        public async Task<IActionResult> SprEvents()
+        {
+            var rez = _editModel.SprEvents();
+            return Ok(rez);
+        }
+
+        [HttpGet]
+        [Route("/api/sprprops")]
+        public async Task<IActionResult> SprProps()
+        {
+            var rez = _editModel.SprProps("");
+            return Ok(rez);
+        }
+
+        [HttpGet]
+        [Route("/api/bypass")]
+        public async Task<IActionResult> GetBypass(string id)
+        {
+            var rez = _editModel.GetBypass(id);
+            return Ok(rez);
         }
     }
 }

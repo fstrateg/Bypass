@@ -26,7 +26,7 @@ namespace Bypass
             services.AddMvc();
             services.AddTransient<IBypassItems, MockBypass>();
             services.AddTransient<IArchiveModel, ArchiveModel>();
-            services.AddTransient<IEditModel, MockEdit>();
+            services.AddTransient<IEditModel, EditModel>();
             services.AddAuthentication("MyAuthCookie").AddCookie("MyAuthCookie", options => {
                 options.Cookie.Name = "MyAuthCookie";
                 options.LoginPath = "/user/login";

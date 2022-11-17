@@ -5,8 +5,11 @@ namespace Bypass.Data.Interfaces
 {
     public interface IEditModel
     {
-        IList<SprItem> SprEvent { get; set; }
-        void Init(string id);
+        List<SprItem> SprEmployee();
+        List<SprItem> SprEvents();
+        List<DocParams> SprProps(string DocID);
+
+        DocBypass GetBypass(string documentID);
         void SetConfiguration(Connect connect);
     }
 }
