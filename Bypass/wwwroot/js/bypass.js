@@ -25,6 +25,8 @@
                 select: function (event, ui) {
                     $("#staff").val(ui.item.label);
                     $("#staff-vl").val(ui.item.value);
+                    $("#caption").text(ui.item.label);
+
                     return false;
                 },
                 change: function (event, ui) {
