@@ -20,7 +20,12 @@ namespace Bypass.Data.Mocks
         public List<SprItem> SprEmployee()
         {
             List<SprItem> rez = new List<SprItem>();
-            rez.Add(new SprItem() { Id = "1", Name = "Иванов" });
+            rez.AddRange(new SprItem[]{
+                    new SprItem() { Id = "1", Name = "Иванов" },
+                    new SprItem() { Id = "2", Name = "Мужельских Алексей Юрьевич|1978" },
+                    new SprItem() { Id = "3", Name = "Мужельских Александр Сергеевич|2000" }
+                    }
+                );
             return rez;
         }
 
@@ -57,6 +62,20 @@ namespace Bypass.Data.Mocks
                 Incode = "405",
                 Name = "Центральный вычислительный центр Отдел производственный",
                 Selected = 0
+            });
+            rez.Add(new DocParams()
+            {
+                ParamID = "10000000000000000054",
+                Incode = "778",
+                Name = "Центральный вычислительный центр Отдел ИБ",
+                Selected = 0
+            });
+            rez.Add(new DocParams()
+            {
+                ParamID = "10000000000000000055",
+                Incode = "363",
+                Name = "IP-телефония",
+                Selected = 1
             });
             return rez;
         }

@@ -24,13 +24,29 @@ namespace Bypass
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddTransient<IBypassItems, MockBypass>();
-            services.AddTransient<IArchiveModel, ArchiveModel>();
-            services.AddTransient<IEditModel, EditModel>();
+            addTransient(services, true);
+
+            
+
             services.AddAuthentication("MyAuthCookie").AddCookie("MyAuthCookie", options => {
                 options.Cookie.Name = "MyAuthCookie";
                 options.LoginPath = "/user/login";
             });
+        }
+
+        private void addTransient(IServiceCollection services, bool mock = false)
+        {
+            if (mock)
+            {
+                services.AddTransient<IBypassItems, MockBypass>();
+                services.AddTransient<IArchiveModel, MockArchive>();
+                services.AddTransient<IEditModel, MockEdit>();
+                return;
+            }
+            services.AddTransient<IBypassItems, BypassModel>();
+            services.AddTransient<IArchiveModel, ArchiveModel>();
+            services.AddTransient<IEditModel, EditModel>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
